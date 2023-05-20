@@ -1,0 +1,128 @@
+Al momento de instaciar, generamos un archivo nuevo denomido top level y lo seteamos como "top module" en el ISE.
+Dentro de su Architecture,antes del begin (como si fuera una signal), declaro las entitys de mis modulos, con la diferencia que cambio el nombre "entity" por "component"
+EJ:
+
+entity MyAnd is
+	port( 	a:in STD_LOGIC;
+		b:in STD_LOGIC;
+		c:out STD_LOGIC);
+end MyAnd	
+		
+		|
+		|	Se transforma en
+		V
+
+component MyAnd is
+	port( 	a:in STD_LOGIC;
+		b:in STD_LOGIC;
+		c:out STD_LOGIC);
+end component	
+
+Luego del begin se instancia cada uno de nuestros componentes/modulos
+
+Ej:
+CUALQUIER_NOMBRE_and1 : MyAnd
+	port map
+	(
+		a => snA,
+		b => piB,
+		c => sAux1
+	);
+
+Recordar que:
+ - va con comas y cierro con ; luego del parentesis
+ - La flechita de asignacion es contraria a la que siempre utilizamos  
+ - Para el nombre podemos usar cualquiera(tiene que tener sentido)
+
+FORMA 2 (Mas rapido)
+
+En esta forma nos ahorramos el trabajo de escribir las declaracion "component" antes del begin del ARCH. Directamente lo escribimos despues del begin
+EJ:
+
+Inst_And1: entity work.MyAnd(Arch_MyAnd)
+	port map
+	(
+		a => snA,
+		b => piB,
+		c => sAux1
+	);
+	
+"Inst_....." es una convencion del profe para identificar rapidamente. En realidad puede ponerse cualquier nombre
+
+
+Cuando hacemos una instanciacion con la utilizacion de generics, se declara luego del begin el "generic map". Este NO LLLEVA PUNTO Y COMA
+
+
+EJ:
+
+Inst_MUX_chan_1 : entity work.Mux2a1_NBits (Archa_Mux2a1_NBits)
+generic map
+(
+	N => 4
+)
+
+Tener en cuenta:
+ - NO poner ; al final del generic map (Solo en la instanciacion).
+
+
+
+
+
+TEST_BENCH
+
+En principio, las entity de los testbench estan VACIAS
+
+Cuando queremos instanciar(manera corta, luego del begin de ARCH), en el nombre del componente le ponemos:
+UUT: "Unit Under Test" o Unidad bajo pruba
+o 
+DUT: "Device Under Test" o Dispoisitivo bajo prueba
+
+Ahora, como vamos a testear nuestro componente, tenemos que poner unos cables por cada puerto que tenga nuestro modulo 
+Por ultimo tenemos que poder asignarle valores a esas señales para ver como responde nuestro componente, hacerlo por un detereminado tiempo
+
+EJ completo:
+
+entity MyAnd_TB is
+end entity;
+
+Architecture Arch_MyAnd_TB of MyAnd_TB is
+	
+	signal sA : std_logic;
+	signal sB : std_logic;
+	signal sZ : std_logic;
+
+begin
+
+DUT : entity work.MyAnd_TB(Arch_MyAnd_TB)
+	port map
+	(
+		a => sA,
+		b => sB,
+		c => sZ
+	);	
+
+process
+begin
+
+sA <= '0' ;
+sA <= '0' ;
+wait for 10 ns;
+
+sA <= '1' ;
+sA <= '0' ;
+wait for 10 ns;
+
+sA <= '0' ;
+sA <= '1' ;
+wait for 10 ns;
+
+sA <= '1' ;
+sA <= '1' ;
+wait for 10 ns;
+
+wait -- Este wait me frena el ciclo. Sino se repeteria siempre la misma secuencia
+
+end process;
+
+Dentro del TESTBENCH
+No apretar el boton de "play", solo el de "play+reloj de arena" cuando seteamos un tiempo de visualizacion de las señales, porque supuestamente te come los recursos de la maquina
