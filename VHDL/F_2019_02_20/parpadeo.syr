@@ -3,13 +3,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.08 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
+Total REAL time to Xst completion: 1.00 secs
 Total CPU time to Xst completion: 0.08 secs
  
 --> Reading design: parpadeo.prj
@@ -105,7 +105,7 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "D:\OneDrive - UTN.BA\Facultad\Final-TD1\VHDL\F_2019_02_20\ej3.vhd" into library work
+Parsing VHDL file "C:\Users\Nahuel\OneDrive - UTN.BA\2023\Finales\Digitales 1\Final-TD1\VHDL\F_2019_02_20\ej3.vhd" into library work
 Parsing entity <parpadeo>.
 Parsing architecture <archo_parpadeo> of entity <parpadeo>.
 
@@ -120,7 +120,7 @@ Elaborating entity <parpadeo> (architecture <archo_parpadeo>) with generics from
 =========================================================================
 
 Synthesizing Unit <parpadeo>.
-    Related source file is "D:\OneDrive - UTN.BA\Facultad\Final-TD1\VHDL\F_2019_02_20\ej3.vhd".
+    Related source file is "C:\Users\Nahuel\OneDrive - UTN.BA\2023\Finales\Digitales 1\Final-TD1\VHDL\F_2019_02_20\ej3.vhd".
         N = 26
     Found 26-bit register for signal <scnt_a>.
     Found 26-bit adder for signal <scnt_f> created at line 1241.
@@ -362,12 +362,12 @@ clk            |    2.547|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.94 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.99 secs
  
 --> 
 
-Total memory usage is 4618184 kilobytes
+Total memory usage is 4618264 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    0 (   0 filtered)
